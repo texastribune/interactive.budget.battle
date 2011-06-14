@@ -188,5 +188,22 @@
 
     </div>
 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+                $('.legend a').click(function() {
+                    var color = $(this).attr("class");
+                    $('.content p').each(function() {
+                        e = $(this);
+                        if (e.hasClass(color)) {
+                            e.fadeTo("fast", 1.0);
+                        } else {
+                            e.fadeTo("fast", 0.5);
+                        }
+                    });
+                });
+        });
+    </script>
+
 </body>
 </html>
