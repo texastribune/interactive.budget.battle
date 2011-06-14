@@ -198,7 +198,7 @@
                 $('.legend a').click(function(e) {
                     e.preventDefault();
                     var color = $(this).attr("class");
-                    $('.content div').each(function() {
+                    $('.flatpages .container .content div').each(function() {
                         var e = $("img", this),
                             div = $(this);
                         if (color === "all" || (div.hasClass(color) || div.hasClass("header"))) {
