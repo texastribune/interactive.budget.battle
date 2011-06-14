@@ -10,42 +10,49 @@
 	
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style type="text/css">
+        article.flatpages { overflow:visible; }
         .container {
             position:relative;
-            width: 960px;
-            margin: 120px auto 0
+            width: 942px;
+            margin: 0 auto;
         }
-        .content {
+        .content div {
+            padding: 0;
         }
 
 
         .legend {
             position:absolute;
             top: 0;
-            right: -255px;
-            width: 240px;
+            right: -160px;
+            width: 145px;
         }
 
         .legend ul { list-style: none; margin: 0; padding: 0; }
-        .legend ul li { margin: 4px; }
+        .legend ul li { margin: 0 4px 4px; }
         .legend a {
             font-size: 16px;
             font-family: Helvetica;
-            width: 216px;
+            width: 121px;
             display: block;
             padding: 8px;
             border-radius: 4px;
             color: #444;
             text-decoration: none;
+            border: 2px solid transparent;
         }
         .legend a:hover {
             color: #222;
         }
-        .legend .red { background-color: #D15C54; }
-        .legend .yellow { background-color: #FCC10F; }
-        .legend .blue { background-color: #4DA0C1; }
-        .legend .teal { background-color: #5DC1BE; }
-        .legend .green { background-color: #80B35F ; }
+        .legend .red { background-color: #D15C54; border-color: #D15C54; }
+        .legend .yellow { background-color: #FCC10F; border-color: #FCC10F; }
+        .legend .blue { background-color: #4DA0C1; border-color: #4DA0C1; }
+        .legend .teal { background-color: #5DC1BE; border-color: #5DC1BE; }
+        .legend .green { background-color: #80B35F ; border-color: #80B35F; }
+        .legend .all {
+            background-color: #fff;
+            border-color: #ccc;
+        }
 
     </style>
 </head>
@@ -132,11 +139,12 @@
         <div class="legend">
 
             <ul>
-                <li><a class="red" href="#">Red</a></li>
-                <li><a class="yellow" href="#">Yellow</a></li>
-                <li><a class="blue" href="#">Blue</a></li>
-                <li><a class="teal" href="#">Teal</a></li>
-                <li><a class="green" href="#">Green</a></li>
+                <li><a class="all" href="#">All of the Stories</a></li>
+                <li><a class="green" href="#">Budget Status</a></li>
+                <li><a class="blue" href="#">Inside the Lege</a></li>
+                <li><a class="teal" href="#">Rainy Day Fund</a></li>
+                <li><a class="yellow" href="#">Gov. Rick Perry</a></li>
+                <li><a class="red" href="#">Outside the Lege</a></li>
             </ul>
 
         </div>
@@ -149,9 +157,10 @@
                 $('.legend a').click(function(e) {
                     e.preventDefault();
                     var color = $(this).attr("class");
-                    $('.content p').each(function() {
-                        e = $(this);
-                        if (e.hasClass(color)) {
+                    $('.content div').each(function() {
+                        var e = $("img", this),
+                            div = $(this);
+                        if (color === "all" || (div.hasClass(color) || div.hasClass("header"))) {
                             e.fadeTo("fast", 1.0);
                         } else {
                             e.fadeTo("fast", 0.5);
@@ -176,7 +185,7 @@
                         if (!fixed) { return; }
                         legend.css({"top": "0",
                             "left": "",
-                            "right": "-255px",
+                            "right": "-160px",
                             "position": "absolute"});
                         fixed = false;
                     }
