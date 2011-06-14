@@ -203,6 +203,29 @@
                         }
                     });
                 });
+
+                var doc = $(document),
+                    containerTop = $('.container').offset().top,
+                    topMargin = 32,
+                    scrollOn = containerTop - topMargin,
+                    legend = $('.legend'),
+                    fixed = false;
+                doc.scroll(function() {
+                    if (doc.scrollTop() > scrollOn) {
+                        if (fixed) { return; }
+                        fixed = true;
+                        legend.css({"top": topMargin + "px",
+                            "left": legend.offset().left,
+                            "position": "fixed"});
+                    } else {
+                        if (!fixed) { return; }
+                        legend.css({"top": "0",
+                            "left": "",
+                            "right": "-255px",
+                            "position": "absolute"});
+                        fixed = false;
+                    }
+                });
         });
     </script>
 
